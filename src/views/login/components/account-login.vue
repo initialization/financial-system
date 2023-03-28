@@ -11,7 +11,9 @@
         <el-checkbox v-model="checkedAccount" label="记住密码" />
         <el-link type="primary">忘记密码？</el-link>
       </div>
-      <el-button type="primary" class="btn">登录</el-button>
+      <el-button type="primary" class="btn" @click="handleLogin"
+        >登录</el-button
+      >
     </div>
     <panelButtom />
   </div>
@@ -23,11 +25,16 @@ import panelButtom from "./panel-buttom.vue"
 import { checkForm } from "@/base-ui/checkForm"
 import { IAccount } from "@/base-ui/checkForm/src/type"
 import { formItems } from "../config"
+import router from "@/router"
+
 const checkedAccount = ref(false)
 const account = reactive<IAccount>({
   account: "",
   password: ""
 })
+const handleLogin = () => {
+  router.push("/main")
+}
 </script>
 
 <style scoped lang="less">

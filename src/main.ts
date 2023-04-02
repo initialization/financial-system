@@ -2,7 +2,7 @@ import { createApp } from "vue"
 import App from "./App.vue"
 import router from "./router"
 import pinia from "./store"
-import { userStore } from "./store/main/userStore"
+import { useUserStore } from "@/store/main/useUserStore"
 import "@/assets/css/index.css"
 import "normalize.css/normalize.css" // css重置样式
 import * as ElementPlusIconsVue from "@element-plus/icons-vue"
@@ -13,6 +13,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.use(pinia)
-const setupStore = userStore()
-setupStore.userMenuAction()
+const userStore = useUserStore()
+userStore.setupUserStore()
 app.use(router).mount("#app")

@@ -2,7 +2,7 @@ let BASE_URL = ""
 let BASE_NAME = ""
 
 if (process.env.NODE_ENV === "production") {
-  BASE_URL = "http://120.79.10.100/"
+  BASE_URL = "https://mock.apifox.cn/m1/2493839-0-default"
   BASE_NAME = "production"
 } else if (process.env.NODE_ENV === "development") {
   BASE_URL = "/api"

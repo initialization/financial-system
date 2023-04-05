@@ -4,11 +4,14 @@ import { IResData } from "./types"
 import { mapMenusToRoutes } from "@/utils/map-menus"
 import router from "@/router"
 import localCache from "@/utils/use-cache"
+import { MonthDataRequest, shopDataRequest } from "@/service/main"
 export const useUserStore = defineStore("userStore", {
   state: () => {
     return {
       userMenu: {} as any,
-      menus: [] as any
+      menus: [] as any,
+      cardData: [] as any,
+      shopData: [] as any
     }
   },
   getters: {},
@@ -22,11 +25,22 @@ export const useUserStore = defineStore("userStore", {
         router.addRoute("main", route)
       })
     },
+    async cardDataAction() {
+      const cardlist: any = await MonthDataRequest()
+      this.cardData = cardlist.data.data
+    },
+    async shopDataAction() {
+      const shoplist: any = await shopDataRequest()
+      this.shopData = shoplist.data.data
+      localCache.setLocalCache("shopData", this.shopData)
+    },
     setupUserStore() {
       this.menus = localCache.getLocalCache("menus")
-      this.menus.forEach((route: any) => {
-        router.addRoute("main", route)
-      })
+      if (this.menus) {
+        this.menus.forEach((route: any) => {
+          router.addRoute("main", route)
+        })
+      }
     }
   }
 })

@@ -4,7 +4,12 @@
       <el-header class="header"><navHeader /></el-header>
       <el-container>
         <el-aside width="220px"><navMenu /></el-aside>
-        <el-main><RouterView></RouterView></el-main>
+        <el-main>
+          <div class="tabs-list">
+            <tabsList></tabsList>
+          </div>
+          <RouterView></RouterView
+        ></el-main>
       </el-container>
     </el-container>
   </div>
@@ -13,6 +18,7 @@
 <script setup lang="ts">
 import { navMenu } from "@/components/nav-menu"
 import { navHeader } from "@/components/nav-header"
+import { tabsList } from "@/base-ui/tabsList"
 </script>
 
 <style scoped lang="less">
@@ -29,6 +35,13 @@ import { navHeader } from "@/components/nav-header"
   }
   .el-container {
     height: 100%;
+    .el-main {
+      padding: 8px;
+    }
+  }
+  .tabs-list {
+    display: flex;
+    align-items: center;
   }
 }
 </style>

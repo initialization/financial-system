@@ -33,7 +33,7 @@ const account = reactive<IAccount>({
   password: ""
 })
 const handleLogin = () => {
-  router.push("/main")
+  router.push("/main/center")
 }
 </script>
 

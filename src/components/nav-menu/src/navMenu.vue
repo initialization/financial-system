@@ -24,7 +24,7 @@
           </el-sub-menu>
         </template>
         <template v-else>
-          <el-menu-item :index="item.url">
+          <el-menu-item :index="item.url" @click="handelMenuItem(item)">
             <el-icon><component :is="item.icon"></component></el-icon>
             <span>{{ item.name }}</span>
           </el-menu-item>
@@ -36,21 +36,19 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { useUserStore } from "@/store/main/useUserStore"
 import router from "@/router"
-import { storeToRefs } from "pinia"
 import { useRoute } from "vue-router"
+import { storeToRefs } from "pinia"
+import { useUserStore } from "@/store/main/useUserStore"
 const store = useUserStore()
 store.userMenuAction()
 const { userMenu } = storeToRefs(store)
-console.log("usermenus --- ", userMenu.value)
 const handelMenuItem = (item: any) => {
   router.push({
     path: item.url ?? "/not-find"
   })
 }
 const route = useRoute()
-console.log("route--", route.path)
 const defaultActive = ref(route.path)
 </script>
 

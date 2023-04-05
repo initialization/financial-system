@@ -4,6 +4,7 @@ export interface IFormType {
   label?: string
   rule?: any[]
   placeholder?: string
+  prop?: string
 }
 
 export interface IAccount {
